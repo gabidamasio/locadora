@@ -1,0 +1,1 @@
+all = ['entity', 'repository', 'usecase']

@@ -1,0 +1,61 @@
+
+Documentação:
+    Locadora de carros no qual o gerente possui controle acerca dos cadastros, listagem, atualizações e exclusões dos seus respectivos clientes, automóveis e algueis.
+
+CRUD - Cliente
+create: Cadastro de clientes
+Read: Listagem de clientes
+Update: Atualização em dados do cliente
+Delete: Exclusão do cliente (e relações referentes ao cliente)
+
+CRUD - Carro
+create: Cadastro de carros 
+Read: Listagem de carros
+Update: Atualização em dados do carro
+Delete: Exclusão do carros (e relações referentes ao carro)
+
+CRUD - Aluguel
+create: Cadastro de alugueis
+Read: Listagem de alugueis
+Update: Atualização no contrato de um aluguel
+Delete: Cancelamento do aluguel
+
+--> toda pasta com init
+
+/src
+    /dataBase
+        cliente.json
+        carro.json
+        aluguel.json
+
+    /modules
+        /cliente
+            /entity
+                Cliente.py
+                __init__.py
+            /repository
+                clienteRepository.py
+                __init__.py
+            /use-case
+                create.py
+                read.py
+                update.py
+                delete.py
+                __init__.py
+        __init__.py
+
+        /carro
+            create.py
+            read.py
+            update.py
+            delete.py
+            __init__.py
+
+        /aluguel
+            create.py
+            read.py
+            update.py
+            delete.py
+            __init__.py
+    
+        __init__.py
