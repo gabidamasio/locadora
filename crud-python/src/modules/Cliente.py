@@ -37,7 +37,7 @@ class Cliente:
             self.create()
             
     def create(self):
-            
+        clientes = {}
         clientes[self.cpf] = {
             'nome': self.nome,
             'email': self.email,
