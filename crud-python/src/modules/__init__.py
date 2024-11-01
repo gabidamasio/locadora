@@ -1,1 +1,0 @@
-all = ['aluguel', 'carro', 'cliente']

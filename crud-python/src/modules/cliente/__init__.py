@@ -1,1 +1,0 @@
-all = ['entity', 'repository', 'usecase']
