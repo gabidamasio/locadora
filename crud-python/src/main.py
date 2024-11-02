@@ -2,7 +2,7 @@ from modules.Cliente import Cliente
 
 cliente = Cliente()
 
-def show_menu():
+def showMenu():
     print("╔════════════════════════════════════════════════════╗")
     print("║            BEM-VINDO AO SISTEMA DE GESTÃO          ║")
     print("║                     LOCADORA                       ║")
@@ -20,39 +20,34 @@ def show_menu():
 
     
 def main():
-    
+        showMenu()
+        opcao = int(input("Digite uma opção: "))
+        
         while True:
-            show_menu()
-            opcao = int(input("Digite uma opção: "))
-            
-            if opcao == 0:
-                print("╔════════════════════════════════════════════════════╗")
-                print("║                 SAINDO DO SISTEMA...               ║")
-                print("╚════════════════════════════════════════════════════╝")
-                exit()
-                break
-            
-            while opcao != 1 and opcao != 2 and opcao != 3:
-                print('\n')
-                print("╔════════════════════════════════════════════════════╗")
-                print("║                   ESCOLHA INVÁLIDA!                ║")
-                print("║         Por favor, selecione uma opção válida.     ║")
-                print("╚════════════════════════════════════════════════════╝")
-                opcao = int(input("Digite uma opção válida: "))
-            
-            if opcao == 1:
-                cliente.menu_cliente()
-            
-            elif opcao == 2:
-                print("╔════════════════════════════════════════════════════╗")
-                print("║                   MÓDULO CARRO                     ║")
-                print("╚════════════════════════════════════════════════════╝")
-                
-            elif opcao == 3:
-                print("╔════════════════════════════════════════════════════╗")
-                print("║                   MÓDULO ALUGUEL                   ║")
-                print("╚════════════════════════════════════════════════════╝")
-                
-            
-            
+            match opcao:
+                case 0:
+                    print("")
+                    print("╔════════════════════════════════════════════════════╗")
+                    print("║                 SAINDO DO SISTEMA...               ║")
+                    print("╚════════════════════════════════════════════════════╝")
+                    exit()
+                    break
+                case 1:
+                    cliente.mainCliente()
+                case 2:
+                    print("╔════════════════════════════════════════════════════╗")
+                    print("║                   MÓDULO CARRO                     ║")
+                    print("╚════════════════════════════════════════════════════╝")
+                case 3:
+                    print("╔════════════════════════════════════════════════════╗")
+                    print("║                   MÓDULO ALUGUEL                   ║")
+                    print("╚════════════════════════════════════════════════════╝")
+                case _:
+                    print('\n')
+                    print("╔════════════════════════════════════════════════════╗")
+                    print("║                   ESCOLHA INVÁLIDA!                ║")
+                    print("║         Por favor, selecione uma opção válida.     ║")
+                    print("╚════════════════════════════════════════════════════╝")
+                    opcao = int(input("Digite uma opção válida: "))
+                    
 main()
