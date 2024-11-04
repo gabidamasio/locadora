@@ -6,5 +6,13 @@
         "telefone": "819996565",
         "data_nascimento": "08/12/2003",
         "endereco": "Rua Jose Durval Carneiro Campelo, 65"
+    },
+    "35849948023": {
+        "nome": "José João de Souza",
+        "cpf": "35849948023",
+        "email": "jose@gmail.com",
+        "telefone": "55989467",
+        "data_nascimento": "05/03/2010",
+        "endereco": "Rua rio da prata"
     }
 }

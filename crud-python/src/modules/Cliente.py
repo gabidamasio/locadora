@@ -10,16 +10,16 @@ class Cliente:
         self.telefone = ''
         self.endereco =''
         self.opcao = ''
-        self.json_cliente = self.inicializarJson()
+        self.arquivo_json_cliente = self.inicializarJson()
     
     def inicializarJson(self): 
-        caminho_arquivo_json = 'crud-python\\src\\modules\\dataBase\\cliente.json'
+        caminho_json = 'crud-python\\src\\modules\\dataBase\\cliente.json'
         
-        if not os.path.exists(caminho_arquivo_json):
-            with open(caminho_arquivo_json, 'w') as arquivo:
+        if not os.path.exists(caminho_json):
+            with open(caminho_json, 'w') as arquivo:
                json.dump({}, arquivo)
 
-        return caminho_arquivo_json
+        return caminho_json
         
     def showMenuCliente(self):
         print("")
@@ -61,18 +61,18 @@ class Cliente:
         print("╚════════════════════════════════════════════════════╝")
         print("")
         print("════════════ Informe os dados pessoais do cliente ════")
-        self.nome = input("Nome completo: ")
         self.cpf = input("CPF: ")
+        self.validarCPF(self.cpf)
+        self.nome = input("Nome completo: ")
         self.data_nascimento = input("Data de nascimento(dd/mm/yy): ")
         self.email = input("E-mail: ")
         self.telefone = input("Telefone: ")
         self.endereco = input("Endereço: ")
-        
+       
         self.create()
            
     def create(self):
-        with open(self.json_cliente , 'r') as j:
-            dados = json.load(j)
+        dados = self.lerJson(self.arquivo_json_cliente)
         
         cliente = {}
         cliente[self.cpf] = {
@@ -84,9 +84,7 @@ class Cliente:
             'endereco': self.endereco
         }
         dados.update(cliente)
-    
-        with open(self.json_cliente, 'w') as j:
-            json.dump(dados, j, indent=4)
+        self.escreverJson(self.arquivo_json_cliente, dados)
         
         print("")
         print("╔════════════════════════════════════════════════════╗")
@@ -100,21 +98,37 @@ class Cliente:
         print("║              LISTAGEM DE CLIENTES  📋              ║")
         print("╚════════════════════════════════════════════════════╝")
                        
-        with open(self.json_cliente, 'r') as j:
-            dados = json.load(j)
-            for chave in dados:
-                cliente = dados[chave]
-                
-                print("")
-                print("╔════════════════════════════════════════════════════╗")
-                print("║ Nome:", cliente['nome'])
-                print("║ CPF:", cliente['cpf']),
-                print("║ Data de nascimento: ", cliente['data_nascimento']),
-                print("║ E-mail : ", cliente['data_nascimento']),
-                print("║ Telefone:", cliente['telefone']),
-                print("║ Endereço:", cliente['endereco']),
-                print("╚════════════════════════════════════════════════════╝")
+        dados = self.lerJson(self.arquivo_json_cliente)
+        for chave in dados:
+            cliente = dados[chave]
+            
+            print("")
+            print("╔════════════════════════════════════════════════════╗")
+            print("║ Nome:", cliente['nome'])
+            print("║ CPF:", cliente['cpf']),
+            print("║ Data de nascimento: ", cliente['data_nascimento']),
+            print("║ E-mail : ", cliente['email']),
+            print("║ Telefone:", cliente['telefone']),
+            print("║ Endereço:", cliente['endereco']),
+            print("╚════════════════════════════════════════════════════╝")
         
         print("Deseja realizar mais alguma operação em Cliente?")
         self.mainCliente()
+    
+    def validarCPF(self, cpf):
+        dados = self.lerJson(self.arquivo_json_cliente)
         
+        if cpf in dados:
+            print('')
+            print('Esse cpf já pertence a um cliente no sistema!')
+            print('Informe um novo cpf')
+            self.criarDadosCliente()
+
+
+    def lerJson(self, arquivo):
+        with open(arquivo, 'r', encoding = "utf-8") as j:
+            return json.load(j)
+    
+    def escreverJson(self, arquivo, dados):
+        with open(arquivo, 'w', encoding = "utf-8") as j:
+            json.dump(dados, j, indent=4, ensure_ascii = False)
