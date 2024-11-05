@@ -211,7 +211,7 @@ class Cliente:
                 print("║ 0. Sair                                           ║")
                 print("╚════════════════════════════════════════════════════╝")
             
-                opcao_atualizar = int(input("Escolha a opção de atualização: "))
+                opcao_atualizar = int(input("Escolha a opção que deseja atualizar: "))
             
                 match opcao_atualizar:
                     case 1:
